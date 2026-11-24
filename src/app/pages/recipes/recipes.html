@@ -1,0 +1,16 @@
+<h1>Recettes</h1>
+<div class="barre-outils">
+  <input class="champ recherche" type="search" placeholder="Rechercher une recette…" (input)="onRecherche($event)" />
+</div>
+@if (resultats$ | async; as page) {
+  <p class="sous-titre">{{ page.total }} recette(s)</p>
+  <div class="grille">
+    @for (r of page.recipes; track $index) {
+      <app-recipe-card [recette]="r" />
+    } @empty {
+      <p class="info">Aucune recette ne correspond à « {{ terme }} ».</p>
+    }
+  </div>
+} @else {
+  <p class="info">Chargement des recettes…</p>
+}

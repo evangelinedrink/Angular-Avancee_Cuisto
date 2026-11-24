@@ -1,0 +1,17 @@
+<header class="entete">
+  <a class="logo" routerLink="/">Cuisto</a>
+  <nav class="nav">
+    <a routerLink="/recettes" routerLinkActive="actif">Recettes</a>
+    <a routerLink="/compte/favoris" routerLinkActive="actif">Mon compte ({{ nbFavoris$ | async }} favoris)</a>
+    <a routerLink="/proposer" routerLinkActive="actif">Proposer une recette</a>
+    <a routerLink="/admin" routerLinkActive="actif">Statistiques</a>
+  </nav>
+  <div class="entete-actions">
+    @if (utilisateur$ | async; as u) {
+      <span class="info">Bonjour {{ u.firstName }}</span>
+      <button class="bouton bouton-secondaire" type="button" (click)="deconnecter()">Déconnexion</button>
+    } @else {
+      <a class="bouton" routerLink="/connexion">Connexion</a>
+    }
+  </div>
+</header>

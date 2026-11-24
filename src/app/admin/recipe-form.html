@@ -1,0 +1,43 @@
+<h1>Proposer une recette</h1>
+@if (message$ | async; as message) {
+  <p class="info">{{ message }}</p>
+}
+<form class="formulaire" (ngSubmit)="envoyer()">
+  <div class="groupe">
+    <label for="name">Nom</label>
+    <input id="name" class="champ" name="name" [(ngModel)]="recette.name" />
+  </div>
+  <div class="groupe">
+    <label for="cuisine">Cuisine</label>
+    <input id="cuisine" class="champ" name="cuisine" [(ngModel)]="recette.cuisine" />
+  </div>
+  <div class="groupe">
+    <label for="difficulty">Difficulté</label>
+    <select id="difficulty" class="champ" name="difficulty" [(ngModel)]="recette.difficulty">
+      <option value="Easy">Facile</option>
+      <option value="Medium">Moyenne</option>
+      <option value="Hard">Difficile</option>
+    </select>
+  </div>
+  <div class="groupe">
+    <label for="prep">Préparation (min)</label>
+    <input id="prep" class="champ" type="number" name="prep" [(ngModel)]="recette.prepTimeMinutes" />
+  </div>
+  <div class="groupe">
+    <label for="cook">Cuisson (min)</label>
+    <input id="cook" class="champ" type="number" name="cook" [(ngModel)]="recette.cookTimeMinutes" />
+  </div>
+  <div class="groupe">
+    <label for="servings">Nombre de personnes</label>
+    <input id="servings" class="champ" type="number" name="servings" [(ngModel)]="recette.servings" />
+  </div>
+  <div class="groupe">
+    <label for="ingredients">Ingrédients (séparés par des virgules)</label>
+    <textarea id="ingredients" class="champ" rows="3" name="ingredients" [(ngModel)]="recette.ingredients"></textarea>
+  </div>
+  <div class="groupe">
+    <label for="instructions">Étapes (séparées par des points)</label>
+    <textarea id="instructions" class="champ" rows="4" name="instructions" [(ngModel)]="recette.instructions"></textarea>
+  </div>
+  <button class="bouton" type="submit">Envoyer</button>
+</form>

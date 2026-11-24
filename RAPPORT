@@ -1,0 +1,28 @@
+Dossier : `formation-angular/cuisto`.
+
+1. Créer `RAPPORT.md` à la racine de `cuisto`, avec un tableau « Mesure / Avant / Après » (score Lighthouse, poids transféré, images à l'ouverture), une liste « Défauts trouvés » et une ligne « Où je me suis arrêté ».
+2. Arrêter `npm start`, construire la version de production (`npx ng build`), puis la servir sur le port 8081 (`npx serve -s dist/cuisto/browser -l 8081`).
+3. Mesurer `http://localhost:8081/recettes` avec Lighthouse (mobile, trois fois, garder celle du milieu).
+4. Dans l'onglet Réseau (cache désactivé, page rechargée), relever le poids transféré et le nombre d'images.
+5. Noter au moins cinq défauts dans le rapport.
+
+Résultat attendu : la colonne « Avant » remplie et au moins cinq défauts notés.
+
+| N° | Avant | Mesure | Après
+|----|--------|----------------|-----------------------|--------|
+| 1 | Les images des nourritures sont très grandes | Economiser 1,275 kiB par réduire les tailles d'images |
+| 2 | Performance a un score de 86 | Réduire JavaScript qui n'est pas utilisé |
+| 3 | Bouton pour le timer ne fonctionne pas (on ne peut pas commencer le timer) - Le bouton démarre une fois (un count) puis finit | Avoir un onClick avec un event pour commencer le timer |
+| 4 | Bouton pour cliquer sur les recettes similaires ne fonctionne pas | Avoir un onClick avec un event |
+| 5 | Lorsqu'on propose une recette et clique sur le bouton Envoyer, la recette n'enregistre pas | Mettre une place une méthode pour le bouton Envoyer pour qu'il enregistre la recette |
+
+•	le poids du fichier main-POGX4HDV.js : 327.9 kb
+•	la part de chaque bibliothèque d'Angular dans ce fichier (@angular/core, @angular/common, @angular/router, @angular/forms, etc.)
+o	@angular/core : 126.8 kb
+o	@angular/common : 31.7 kb
+o	@angular/router : 75.8 kb
+o	@angular/forms : 75.8 kb
+•	la part du code de Cuisto (dossiers src/ et libs/).
+o	Src : 22.3 kb
+
+La liste des recettes n'a pas de formulaire, mais main contient tout ce qui est chargé dès le démarrage.

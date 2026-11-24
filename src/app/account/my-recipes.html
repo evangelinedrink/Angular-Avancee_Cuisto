@@ -1,0 +1,14 @@
+@if (etat$ | async; as etat) {
+  @if (etat.chargement) {
+    <p class="info">Chargement…</p>
+  } @else if (etat.erreur) {
+    <p class="alerte">{{ etat.erreur }}</p>
+  } @else {
+    <p class="sous-titre">{{ etat.utilisateur?.firstName }} : {{ etat.recettes.length }} recette(s) publiée(s)</p>
+    <div class="grille">
+      @for (r of etat.recettes; track r.id) {
+        <app-recipe-card [recette]="r" />
+      }
+    </div>
+  }
+}

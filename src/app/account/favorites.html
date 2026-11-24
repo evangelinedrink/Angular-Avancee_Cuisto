@@ -1,0 +1,10 @@
+@if (recettes$ | async; as recettes) {
+  <p class="sous-titre">{{ recettes.length }} recette(s) favorite(s)</p>
+  <div class="grille">
+    @for (r of recettes; track $index) {
+      <app-recipe-card [recette]="r" />
+    } @empty {
+      <p class="info">Aucun favori pour l'instant.</p>
+    }
+  </div>
+}

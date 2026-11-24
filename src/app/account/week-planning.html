@@ -1,0 +1,25 @@
+@if (planning$ | async; as planning) {
+  <p class="sous-titre">{{ nombreDeRepas(planning) }} repas prévu(s)</p>
+  <div class="semaine">
+    @for (j of jours; track j) {
+      <section class="panneau">
+        <h2>{{ j }}</h2>
+        @for (r of planning[j]; track $index; let i = $index) {
+          <p>{{ r.name }} <button class="bouton-icone" type="button" (click)="retirer(j, i)" aria-label="Retirer">×</button></p>
+        } @empty {
+          <p class="info">—</p>
+        }
+      </section>
+    }
+  </div>
+  <section class="panneau">
+    <h2>Liste de courses</h2>
+    <ul class="liste-simple">
+      @for (i of listeDeCourses(planning); track i) {
+        <li>{{ i }}</li>
+      } @empty {
+        <li class="info">Rien à acheter.</li>
+      }
+    </ul>
+  </section>
+}

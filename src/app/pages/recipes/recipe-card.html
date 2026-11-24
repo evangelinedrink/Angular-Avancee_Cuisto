@@ -1,0 +1,11 @@
+@let r = recette();
+<article class="carte cliquable" (click)="ouvrir()">
+  <img class="carte-image" [src]="r.image" [alt]="r.name" width="300" height="300" />
+  <div class="carte-corps">
+    <p class="carte-categorie">{{ r.cuisine }} · {{ libelleDifficulte() }}</p>
+    <h2 class="carte-titre">{{ r.name }}</h2>
+    <p class="carte-note">★ {{ r.rating | number: '1.1-1' }}</p>
+    <p class="carte-prix">{{ duree() }}</p>
+    <button class="bouton bouton-secondaire" type="button" (click)="basculer($event)">{{ estFavori() ? '♥ Favori' : '♡ Ajouter aux favoris' }}</button>
+  </div>
+</article>

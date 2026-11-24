@@ -1,0 +1,51 @@
+<a class="retour" routerLink="/recettes">← Retour aux recettes</a>
+@if (recette$ | async; as r) {
+  <article class="detail">
+    <img class="detail-image" [src]="r.image" [alt]="r.name" width="600" height="600" />
+    <div>
+      <p class="carte-categorie">{{ r.cuisine }} · {{ r.difficulty }}</p>
+      <h1>{{ r.name }}</h1>
+      @if (auteur$ | async; as a) {
+        <p class="info">Proposée par {{ a.firstName }} {{ a.lastName }}</p>
+      }
+      <p class="detail-prix">Temps total : {{ r.prepTimeMinutes }} min</p>
+      <p>Pour {{ r.servings }} personne(s) · {{ r.caloriesPerServing }} kcal par personne</p>
+      <p>
+        <label for="jour">Ajouter au planning : </label>
+        <select id="jour" class="champ champ-court" (change)="planifier(r, $event)">
+          <option value="">Choisir un jour…</option>
+          @for (j of jours; track j) {
+            <option [value]="j">{{ j }}</option>
+          }
+        </select>
+      </p>
+      <app-cooking-timer [minutes]="r.cookTimeMinutes" />
+    </div>
+  </article>
+  <section class="avis">
+    <h2>Ingrédients</h2>
+    <ul class="liste-simple">
+      @for (i of r.ingredients; track $index) {
+        <li>{{ i }}</li>
+      }
+    </ul>
+    <h2>Préparation</h2>
+    <ol>
+      @for (e of r.instructions; track $index) {
+        <li>{{ e }}</li>
+      }
+    </ol>
+    <h2>Recettes similaires</h2>
+    @if (similaires$ | async; as page) {
+      <ul class="liste-simple">
+        @for (s of page.recipes; track s.id) {
+          @if (s.id !== r.id) {
+            <li><a [routerLink]="['/recettes', s.id]">{{ s.name }}</a></li>
+          }
+        }
+      </ul>
+    }
+  </section>
+} @else {
+  <p class="info">Chargement de la recette…</p>
+}
